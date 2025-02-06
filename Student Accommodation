@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Housing Hub</title>
+    <style>
+        /* Previous styles remain the same */
+        
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 1.5rem 3rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .post-listing {
+            background-color: #1a73e8;
+            color: white;
+        }
+
+        .browse-listings {
+            background-color: #34a853;
+            color: white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .form-container {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .form-visible {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .back-button {
+            margin-bottom: 1rem;
+            cursor: pointer;
+            color: #1a73e8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Housing Hub</h1>
+        <p>Find your perfect shared student accommodation</p>
+    </header>
+
+    <div class="container">
+        <!-- Main CTA Buttons -->
+        <div class="cta-container" id="mainCta">
+            <button class="cta-button post-listing" onclick="showForm()">Post Your Listing</button>
+            <button class="cta-button browse-listings" onclick="showListings()">Browse Listings</button>
+        </div>
+
+        <!-- Post Listing Form -->
+        <div class="form-container" id="postForm">
+            <div class="back-button" onclick="showMainCta()">← Back to Main Menu</div>
+            <h2>Post Your Accommodation</h2>
+            <form id="listingForm">
+                <div class="form-group">
+                    <label>Title:</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Price (£/month):</label>
+                    <input type="number" required>
+                </div>
+                <div class="form-group">
+                    <label>Location:</label>
+                    <input type="text" required>
+                </div>
+                <button type="submit" class="cta-button post-listing">Submit Listing</button>
+            </form>
+        </div>
+
+        <!-- Listings Container -->
+        <div class="listing-container" id="listings" style="display: none;">
+            <div class="back-button" onclick="showMainCta()">← Back to Main Menu</div>
+            <!-- Listings will be populated here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Toggle visibility between main CTAs and other sections
+        function showMainCta() {
+            document.getElementById('mainCta').style.display = 'flex';
+            document.getElementById('postForm').style.display = 'none';
+            document.getElementById('listings').style.display = 'none';
+        }
+
+        function showForm() {
+            document.getElementById('mainCta').style.display = 'none';
+            document.getElementById('postForm').style.display = 'block';
+            document.getElementById('listings').style.display = 'none';
+        }
+
+        function showListings() {
+            document.getElementById('mainCta').style.display = 'none';
+            document.getElementById('postForm').style.display = 'none';
+            document.getElementById('listings').style.display = 'grid';
+            loadListings();
+        }
+
+        // Handle form submission
+        document.getElementById('listingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send data to a server
+            alert('Listing submitted! (Note: This is a demo - implement backend storage)');
+            showMainCta();
+        });
+
+        // Load sample listings (replace with real data from server)
+        function loadListings() {
+            const listingsContainer = document.getElementById('listings');
+            listingsContainer.innerHTML = `
+                <div class="listing-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Accommodation">
+                    <h2>City Center Shared Flat</h2>
+                    <div class="price">£600/month</div>
+                    <ul class="features">
+                        <li class="feature-tag">2 bedrooms</li>
+                        <li class="feature-tag">Shared bathroom</li>
+                        <li class="feature-tag">Kitchen</li>
+                    </ul>
+                    <p>Available from September 2024. Perfect for students at University of Example.</p>
+                    <button>Contact Student</button>
+                </div>
+                <!-- Add more listings here -->
+            `;
+        }
+    </script>
+</body>
+</html>
