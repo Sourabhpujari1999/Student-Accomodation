@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Accommodation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .option-button {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            width: 200px;
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 16px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-submit {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Student Accommodation</h1>
+</header>
+
+<div class="container">
+
+    <!-- Homepage with Options -->
+    <div class="options">
+        <button class="option-button" onclick="showPostAccommodation()">Post Accommodation</button>
+        <button class="option-button" onclick="showBrowseAccommodation()">Browse Accommodation</button>
+    </div>
+
+    <!-- Post Accommodation Form (Hidden Initially) -->
+    <div id="postAccommodationForm" class="form-container" style="display: none;">
+        <h2>Post Accommodation</h2>
+        <form>
+            <label for="email">Email Address or Mobile Number:</label>
+            <input type="text" id="email" name="email" placeholder="Enter Email or Mobile" required>
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter Address" required>
+
+            <label for="availability">Availability:</label>
+            <input type="date" id="availability" name="availability" required>
+
+            <label for="rooms">Rooms:</label>
+            <input type="number" id="rooms" name="rooms" placeholder="Number of Rooms" required>
+
+            <label for="bathrooms">Bathrooms:</label>
+            <input type="number" id="bathrooms" name="bathrooms" placeholder="Number of Bathrooms" required>
+
+            <label for="kitchen">Kitchen:</label>
+            <select id="kitchen" name="kitchen">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label for="utilities">Utilities:</label>
+            <select id="utilities" name="utilities">
+                <option value="water">Water</option>
+                <option value="electricity">Electricity</option>
+                <option value="wi-fi">Wi-Fi</option>
+                <option value="all">All</option>
+            </select>
+
+            <label for="rent">Rent:</label>
+            <input type="number" id="rent" name="rent" placeholder="Enter Rent" required>
+
+            <label for="lease">Lease Duration:</label>
+            <select id="lease" name="lease">
+                <option value="6 months">6 Months</option>
+                <option value="1 year">1 Year</option>
+                <option value="other">Other</option>
+            </select>
+
+            <button class="btn-submit" type="submit">Submit Accommodation</button>
+        </form>
+    </div>
+
+    <!-- Browse Accommodation Filters (Hidden Initially) -->
+    <div id="browseAccommodationFilters" class="form-container" style="display: none;">
+        <h2>Browse Accommodation</h2>
+        <div class="filters">
+            <div>
+                <label for="rentFilter">Rent:</label>
+                <input type="number" id="rentFilter" name="rentFilter" placeholder="Max Rent">
+            </div>
+            <div>
+                <label for="areaFilter">Area:</label>
+                <input type="text" id="areaFilter" name="areaFilter" placeholder="Enter Area">
+            </div>
+            <div>
+                <label for="availabilityFilter">Availability:</label>
+                <input type="date" id="availabilityFilter" name="availabilityFilter">
+            </div>
+        </div>
+        <button class="btn-submit" type="button">Apply Filters</button>
+    </div>
+
+</div>
+
+<script>
+    function showPostAccommodation() {
+        document.getElementById("postAccommodationForm").style.display = "block";
+        document.getElementById("browseAccommodationFilters").style.display = "none";
+    }
+
+    function showBrowseAccommodation() {
+        document.getElementById("browseAccommodationFilters").style.display = "block";
+        document.getElementById("postAccommodationForm").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
